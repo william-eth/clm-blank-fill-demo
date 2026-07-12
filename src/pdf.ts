@@ -29,7 +29,9 @@ export async function downloadPdf(element: HTMLElement, filename: string): Promi
         },
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['css', 'legacy'], avoid: ['h1', 'h2', '.doc-heading'] },
+      // avoid 需涵蓋一般段落，否則跨頁段落會被光柵切到半個字；
+      // 跨頁的整段改推到下一頁（超過一頁高的段落仍無法避免切割）
+      pagebreak: { mode: ['css', 'legacy'], avoid: ['h1', 'h2', '.doc-heading', '.doc-para'] },
     })
     .from(element)
     .save()
