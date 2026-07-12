@@ -10,13 +10,15 @@
 
 ## 架構
 
-```
-┌──────────────┐    ┌───────────────┐    ┌────────────────────┐    ┌──────────────┐
-│ 選擇公版範本   │ →  │ 表單填挖空      │ →  │ HTML 即時預覽        │ →  │ 產出下載      │
-│ index.json   │    │ metadata 驅動  │    │ (條文唯讀、長文自動換行) │    │ PDF / DOCX   │
-└──────────────┘    └───────────────┘    └────────────────────┘    └──────────────┘
-        ↑ fetch                                  ↑ 解析                   ↑ 填值
-   public/templates/*.docx ──── pizzip 解析 word/document.xml ──── docxtemplater
+```mermaid
+flowchart LR
+    A["選擇公版範本<br/>(index.json)"] --> B["表單填挖空<br/>(metadata 驅動)"]
+    B --> C["HTML 即時預覽<br/>(條文唯讀、長文自動換行)"]
+    C --> D["產出下載<br/>(PDF / DOCX)"]
+
+    T[("public/templates/*.docx<br/>DOCX 母稿")]
+    T -- "pizzip 解析 word/document.xml" --> C
+    T -- "docxtemplater 填值" --> D
 ```
 
 - **DOCX 母稿為單一來源**：`scripts/generate-templates.mjs` 以 [`docx`](https://www.npmjs.com/package/docx) 產生三份繁中示範範本（`public/templates/*.docx`）與 metadata（`index.json`）。

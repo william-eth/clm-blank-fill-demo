@@ -58,7 +58,7 @@ export const templates = [
       { type: 'blank', text: '' },
       {
         type: 'body',
-        text: '本保密合約書（下稱「本合約」）由凱鈿行動科技股份有限公司（下稱「甲方」）與 {{counterparty_name}}（統一編號：{{counterparty_tax_id}}，下稱「乙方」）為進行 {{purpose}}（下稱「本目的」）之合作，就機密資訊之揭露與保護事宜，於 {{effective_date}} 共同締結，雙方同意條款如下：',
+        text: '本保密合約書（下稱「本合約」）由示範軟體股份有限公司（下稱「甲方」）與 {{counterparty_name}}（統一編號：{{counterparty_tax_id}}，下稱「乙方」）為進行 {{purpose}}（下稱「本目的」）之合作，就機密資訊之揭露與保護事宜，於 {{effective_date}} 共同締結，雙方同意條款如下：',
       },
       { type: 'heading', text: '第一條 機密資訊之定義' },
       {
@@ -88,11 +88,11 @@ export const templates = [
       { type: 'heading', text: '第六條 準據法與管轄' },
       {
         type: 'body',
-        text: '本合約以中華民國法律為準據法。因本合約所生之爭議，雙方同意以臺灣臺南地方法院為第一審管轄法院。',
+        text: '本合約以中華民國法律為準據法。因本合約所生之爭議，雙方同意以臺灣臺北地方法院為第一審管轄法院。',
       },
       { type: 'blank', text: '' },
       { type: 'body', text: '立合約書人' },
-      { type: 'body', text: '甲方：凱鈿行動科技股份有限公司' },
+      { type: 'body', text: '甲方：示範軟體股份有限公司' },
       { type: 'body', text: '乙方：{{counterparty_name}}' },
       { type: 'body', text: '統一編號：{{counterparty_tax_id}}' },
       { type: 'blank', text: '' },
@@ -146,7 +146,7 @@ export const templates = [
       { type: 'blank', text: '' },
       {
         type: 'body',
-        text: '凱鈿行動科技股份有限公司（下稱「甲方」）茲委託 {{counterparty_name}}（下稱「乙方」）提供服務，雙方同意條款如下：',
+        text: '示範軟體股份有限公司（下稱「甲方」）茲委託 {{counterparty_name}}（下稱「乙方」）提供服務，雙方同意條款如下：',
       },
       { type: 'heading', text: '第一條 服務內容' },
       {
@@ -181,11 +181,11 @@ export const templates = [
       { type: 'heading', text: '第七條 準據法與管轄' },
       {
         type: 'body',
-        text: '本合約以中華民國法律為準據法。因本合約所生之爭議，雙方同意以臺灣臺南地方法院為第一審管轄法院。',
+        text: '本合約以中華民國法律為準據法。因本合約所生之爭議，雙方同意以臺灣臺北地方法院為第一審管轄法院。',
       },
       { type: 'blank', text: '' },
       { type: 'body', text: '立合約書人' },
-      { type: 'body', text: '甲方：凱鈿行動科技股份有限公司' },
+      { type: 'body', text: '甲方：示範軟體股份有限公司' },
       { type: 'body', text: '乙方：{{counterparty_name}}' },
       { type: 'blank', text: '' },
       { type: 'right', text: '合約期間：{{start_date}} 至 {{end_date}}' },
@@ -194,7 +194,7 @@ export const templates = [
   {
     id: 'statement',
     name: '企業標誌使用聲明書',
-    description: '短篇單向聲明書：聲明人同意凱鈿於行銷目的使用其企業標誌。',
+    description: '短篇單向聲明書：聲明人同意示範軟體於行銷目的使用其企業標誌。',
     file: 'statement.docx',
     fields: [
       {
@@ -224,7 +224,7 @@ export const templates = [
       { type: 'blank', text: '' },
       {
         type: 'body',
-        text: '{{declarant_name}}（下稱「本公司」）同意凱鈿行動科技股份有限公司及其子公司與關係企業（以下統稱「凱鈿集團公司」）於行銷、業務推廣及公關目的範圍內，得對外揭示本公司為凱鈿集團公司之合作夥伴，並於該目的範圍內無償使用本公司之企業標誌（包含但不限於商標、企業名稱或標誌）。',
+        text: '{{declarant_name}}（下稱「本公司」）同意示範軟體股份有限公司及其子公司與關係企業（以下統稱「示範集團公司」）於行銷、業務推廣及公關目的範圍內，得對外揭示本公司為示範集團公司之合作夥伴，並於該目的範圍內無償使用本公司之企業標誌（包含但不限於商標、企業名稱或標誌）。',
       },
       {
         type: 'body',
@@ -232,11 +232,11 @@ export const templates = [
       },
       {
         type: 'body',
-        text: '本公司如需終止本聲明書，應於終止日三十日前以書面通知凱鈿集團公司。為此，特立此書為憑。',
+        text: '本公司如需終止本聲明書，應於終止日三十日前以書面通知示範集團公司。為此，特立此書為憑。',
       },
       { type: 'blank', text: '' },
       { type: 'body', text: '此致' },
-      { type: 'body', text: '凱鈿行動科技股份有限公司' },
+      { type: 'body', text: '示範軟體股份有限公司' },
       { type: 'blank', text: '' },
       { type: 'body', text: '聲明人：{{declarant_name}}' },
       { type: 'body', text: '授權簽名人：＿＿＿＿＿＿＿＿＿＿（簽名）' },
