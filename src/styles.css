@@ -1,0 +1,403 @@
+/* 注意：預覽區顏色一律使用 hex，避免 html2canvas 不支援的新式色彩函數 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', system-ui, sans-serif;
+  background: #f1f3f6;
+  color: #1f2933;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────── */
+.app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e0e4e9;
+}
+
+.app-header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 24px 16px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #1f2933;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: #0b62d6;
+}
+
+.app-subtitle {
+  margin: 6px 0 0;
+  color: #5b6672;
+  font-size: 14px;
+}
+
+/* ── Main ───────────────────────────────── */
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.loading {
+  color: #5b6672;
+}
+
+.error-banner {
+  background: #fdecec;
+  border: 1px solid #f2b8b5;
+  color: #8c1d18;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* ── 範本卡片 ────────────────────────────── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.template-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #e0e4e9;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.template-card:hover {
+  border-color: #0b62d6;
+  box-shadow: 0 4px 14px rgba(15, 40, 80, 0.08);
+}
+
+.template-card-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.template-card-desc {
+  color: #5b6672;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.template-card-meta {
+  margin-top: auto;
+  color: #0b62d6;
+  font-size: 13px;
+}
+
+/* ── 填寫頁：左表單右預覽 ───────────────── */
+.fill-layout {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .fill-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-pane {
+  background: #ffffff;
+  border: 1px solid #e0e4e9;
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+@media (max-width: 960px) {
+  .form-pane {
+    position: static;
+    max-height: none;
+  }
+}
+
+.form-pane-desc {
+  margin: 0 0 16px;
+  color: #5b6672;
+  font-size: 13px;
+}
+
+.fake-company {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f4f8ff;
+  border: 1px dashed #9db8e0;
+  border-radius: 8px;
+}
+
+.fake-company select {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.required-mark {
+  color: #c0392b;
+  font-size: 12px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+.field input,
+.field textarea,
+.fake-company select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #c3ccd6;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: #ffffff;
+  color: #1f2933;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid #0b62d6;
+  outline-offset: 0;
+  border-color: #0b62d6;
+}
+
+.field-missing input,
+.field-missing textarea {
+  border-color: #c0392b;
+}
+
+.field-hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #7a8590;
+}
+
+.field-error {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #c0392b;
+}
+
+/* ── 按鈕 ───────────────────────────────── */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid #c3ccd6;
+  background: #ffffff;
+  color: #1f2933;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: #0b62d6;
+  color: #0b62d6;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #0b62d6;
+  border-color: #0b62d6;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0a53b5;
+  color: #ffffff;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  color: #5b6672;
+}
+
+.missing-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: #c0392b;
+}
+
+/* ── 預覽（紙張） ────────────────────────── */
+.preview-pane-header {
+  font-size: 13px;
+  color: #5b6672;
+  margin-bottom: 10px;
+}
+
+.paper {
+  background: #ffffff;
+  border: 1px solid #e0e4e9;
+  border-radius: 4px;
+  box-shadow: 0 6px 22px rgba(15, 40, 80, 0.1);
+  max-width: 760px;
+  padding: 56px 60px;
+}
+
+@media (max-width: 640px) {
+  .paper {
+    padding: 28px 22px;
+  }
+}
+
+.doc {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #111418;
+  /* 條文唯讀：擋掉選取以外的互動暗示即可，真正的不可編輯來自「不是輸入元件」 */
+}
+
+.doc-title {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+  margin: 0 0 24px;
+}
+
+.doc-heading {
+  font-size: 16px;
+  margin: 18px 0 6px;
+}
+
+.doc-para {
+  margin: 0 0 10px;
+  /* 長文自動換行的關鍵：長字串強制斷行。
+     注意：不可用 white-space: pre-wrap —— html2canvas 對 pre-wrap + CJK
+     會漏字／錯位，使用者輸入的換行改由 <br> 呈現（見 PreviewDoc.tsx） */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-height: 1em;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-justify {
+  /* DOCX 母稿為兩端對齊，但 html2canvas 對 CJK justify 會漏字／錯位，
+     預覽與 PDF 一律以靠左呈現（CJK 滿行時視覺差異極小） */
+  text-align: left;
+}
+
+.filled-value {
+  background: #eaf3ff;
+  border-bottom: 1px solid #7fb0ea;
+  padding: 0 2px;
+}
+
+.pending-value {
+  color: #b0651a;
+  background: #fff6e8;
+  border-bottom: 1px dashed #dfa860;
+  padding: 0 2px;
+}
+
+/* ── Footer ─────────────────────────────── */
+.app-footer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 18px 24px 28px;
+  color: #7a8590;
+  font-size: 12.5px;
+}
+
+/* ── 列印（備援：使用瀏覽器「另存為 PDF」也可得到乾淨版面） ── */
+@media print {
+  .app-header,
+  .app-footer,
+  .form-pane,
+  .preview-pane-header {
+    display: none !important;
+  }
+
+  body,
+  .app-main {
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+
+  .fill-layout {
+    display: block;
+  }
+
+  .paper {
+    border: none;
+    box-shadow: none;
+    max-width: none;
+    padding: 0;
+  }
+}

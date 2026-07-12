@@ -1,0 +1,119 @@
+{
+  "templates": [
+    {
+      "id": "nda",
+      "name": "保密合約（NDA）",
+      "description": "單向簡版保密合約：約定機密資訊之範圍、保密義務與存續期間。",
+      "file": "nda.docx",
+      "fields": [
+        {
+          "key": "counterparty_name",
+          "label": "對方公司名稱",
+          "hint": "請輸入完整公司登記名稱，例如：範例科技股份有限公司",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "counterparty_tax_id",
+          "label": "對方統一編號",
+          "hint": "8 碼數字",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "effective_date",
+          "label": "生效日",
+          "hint": "本合約之生效日期",
+          "required": true,
+          "type": "date"
+        },
+        {
+          "key": "purpose",
+          "label": "合作目的",
+          "hint": "例如：評估雲端文件服務整合合作",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "confidential_scope",
+          "label": "保密資訊範圍",
+          "hint": "可填入長段落，說明雙方特別約定之機密資訊範圍；此欄位用於驗證長文自動換行。",
+          "required": true,
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "服務合約（摘要版）",
+      "description": "中篇服務委託合約：服務內容、期間、報酬與智財、保密等約定。",
+      "file": "service.docx",
+      "fields": [
+        {
+          "key": "counterparty_name",
+          "label": "受託方公司名稱",
+          "hint": "請輸入完整公司登記名稱",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "service_desc",
+          "label": "服務內容與範圍",
+          "hint": "可填入長段落，詳述服務項目、交付物與驗收標準；此欄位用於驗證長文自動換行。",
+          "required": true,
+          "type": "textarea"
+        },
+        {
+          "key": "fee_amount",
+          "label": "服務報酬（新臺幣）",
+          "hint": "例如：500,000",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "start_date",
+          "label": "合約起日",
+          "hint": "服務期間開始日",
+          "required": true,
+          "type": "date"
+        },
+        {
+          "key": "end_date",
+          "label": "合約迄日",
+          "hint": "服務期間屆滿日",
+          "required": true,
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "id": "statement",
+      "name": "企業標誌使用聲明書",
+      "description": "短篇單向聲明書：聲明人同意凱鈿於行銷目的使用其企業標誌。",
+      "file": "statement.docx",
+      "fields": [
+        {
+          "key": "declarant_name",
+          "label": "聲明人（公司）名稱",
+          "hint": "請輸入完整公司登記名稱",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": "declaration_body",
+          "label": "聲明與授權內容",
+          "hint": "可填入長段落，說明授權使用之標誌項目、範圍與方式；此欄位用於驗證長文自動換行。",
+          "required": true,
+          "type": "textarea"
+        },
+        {
+          "key": "sign_date",
+          "label": "簽署日期",
+          "hint": "本聲明書之簽署日",
+          "required": true,
+          "type": "date"
+        }
+      ]
+    }
+  ]
+}
