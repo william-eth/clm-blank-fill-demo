@@ -13,7 +13,9 @@ export interface LoadedDocx {
  * 正式系統應以完整的 DOCX 掃描服務處理任意公版。
  */
 export async function loadDocx(url: string): Promise<LoadedDocx> {
-  const res = await fetch(url)
+  // no-cache：每次向伺服器重新驗證（ETag），避免 GitHub Pages 的
+  // max-age 快取讓使用者在範本更新後仍拿到舊 DOCX
+  const res = await fetch(url, { cache: 'no-cache' })
   if (!res.ok) throw new Error(`無法載入範本（HTTP ${res.status}）`)
   const buffer = await res.arrayBuffer()
 

@@ -10,7 +10,7 @@ export default function App() {
   const [selected, setSelected] = useState<TemplateMeta | null>(null)
 
   useEffect(() => {
-    fetch(`${BASE}templates/index.json`)
+    fetch(`${BASE}templates/index.json`, { cache: 'no-cache' })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         return res.json()
