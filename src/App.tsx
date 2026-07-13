@@ -1,13 +1,23 @@
 import { useEffect, useState } from 'react'
-import type { TemplateIndex, TemplateMeta } from './types'
+import type { TemplateField, TemplateIndex, TemplateMeta } from './types'
 import FillView from './FillView'
+import UploadView, { type UploadedDoc } from './UploadView'
+import FieldConfigView from './FieldConfigView'
+import CustomFillView from './CustomFillView'
 
 const BASE = import.meta.env.BASE_URL
+
+type Route =
+  | { view: 'list' }
+  | { view: 'preset'; template: TemplateMeta }
+  | { view: 'upload' }
+  | { view: 'config'; doc: UploadedDoc }
+  | { view: 'customFill'; doc: UploadedDoc; fields: TemplateField[] }
 
 export default function App() {
   const [index, setIndex] = useState<TemplateIndex | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [selected, setSelected] = useState<TemplateMeta | null>(null)
+  const [route, setRoute] = useState<Route>({ view: 'list' })
 
   useEffect(() => {
     fetch(`${BASE}templates/index.json`, { cache: 'no-cache' })
@@ -19,13 +29,15 @@ export default function App() {
       .catch((err) => setError(`載入範本清單失敗：${String(err)}`))
   }, [])
 
+  const goHome = () => setRoute({ view: 'list' })
+
   return (
     <div className="app">
       <header className="app-header">
         <div className="app-header-inner">
           <h1 className="app-title">
-            {selected ? (
-              <button className="link-btn" onClick={() => setSelected(null)}>
+            {route.view !== 'list' ? (
+              <button className="link-btn" onClick={goHome}>
                 ← 公版合約挖空 Demo
               </button>
             ) : (
@@ -42,12 +54,16 @@ export default function App() {
         {error && <p className="error-banner">{error}</p>}
         {!error && !index && <p className="loading">載入範本清單中…</p>}
 
-        {index && !selected && (
+        {index && route.view === 'list' && (
           <section>
             <h2 className="section-title">選擇公版範本</h2>
             <div className="card-grid">
               {index.templates.map((t) => (
-                <button key={t.id} className="template-card" onClick={() => setSelected(t)}>
+                <button
+                  key={t.id}
+                  className="template-card"
+                  onClick={() => setRoute({ view: 'preset', template: t })}
+                >
                   <span className="template-card-name">{t.name}</span>
                   <span className="template-card-desc">{t.description}</span>
                   <span className="template-card-meta">
@@ -55,16 +71,46 @@ export default function App() {
                   </span>
                 </button>
               ))}
+              <button
+                className="template-card upload-card"
+                onClick={() => setRoute({ view: 'upload' })}
+              >
+                <span className="template-card-name">＋ 上傳自訂範本</span>
+                <span className="template-card-desc">
+                  上傳已用 {'{{欄位名稱}}'} 標好挖空的 DOCX，設定欄位後填寫並下載 PDF。
+                </span>
+                <span className="template-card-meta">檔案僅在瀏覽器處理，不上傳伺服器</span>
+              </button>
             </div>
           </section>
         )}
 
-        {selected && (
+        {route.view === 'preset' && (
           <FillView
-            key={selected.id}
-            template={selected}
-            docxUrl={`${BASE}templates/${selected.file}`}
-            onBack={() => setSelected(null)}
+            key={route.template.id}
+            template={route.template}
+            docxUrl={`${BASE}templates/${route.template.file}`}
+            onBack={goHome}
+          />
+        )}
+
+        {route.view === 'upload' && (
+          <UploadView onLoaded={(doc) => setRoute({ view: 'config', doc })} onBack={goHome} />
+        )}
+
+        {route.view === 'config' && (
+          <FieldConfigView
+            doc={route.doc}
+            onNext={(fields) => setRoute({ view: 'customFill', doc: route.doc, fields })}
+            onBack={() => setRoute({ view: 'upload' })}
+          />
+        )}
+
+        {route.view === 'customFill' && (
+          <CustomFillView
+            doc={route.doc}
+            fields={route.fields}
+            onBack={() => setRoute({ view: 'config', doc: route.doc })}
           />
         )}
       </main>

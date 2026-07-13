@@ -364,6 +364,144 @@ body {
   padding: 0 2px;
 }
 
+/* ── 上傳自訂範本 ────────────────────────── */
+.upload-card {
+  border-style: dashed;
+  border-color: #9db8e0;
+  background: #f9fbff;
+}
+
+.upload-view,
+.config-view {
+  max-width: 860px;
+}
+
+.upload-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.help-card {
+  background: #ffffff;
+  border: 1px solid #e0e4e9;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.help-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.help-card h3 + ul,
+.help-card h3 + ol {
+  margin-top: 0;
+}
+
+.help-card ol,
+.help-card ul {
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.help-card code {
+  background: #f1f3f6;
+  border: 1px solid #e0e4e9;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 13px;
+}
+
+.warning-banner {
+  background: #fff6e8;
+  border: 1px solid #dfa860;
+  color: #7a4a12;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+}
+
+.warning-banner p {
+  margin: 2px 0;
+}
+
+/* ── 欄位設定表格 ────────────────────────── */
+.config-table-wrap {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #e0e4e9;
+  border-radius: 12px;
+}
+
+.config-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.config-table th,
+.config-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eceff2;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.config-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.config-table code {
+  background: #f1f3f6;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 13px;
+}
+
+.config-count {
+  color: #7a8590;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.config-table input[type='text'],
+.config-table input:not([type]),
+.config-table select {
+  padding: 6px 8px;
+  border: 1px solid #c3ccd6;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13.5px;
+  min-width: 140px;
+}
+
+.config-required {
+  text-align: center;
+}
+
+/* ── 自訂範本預覽（docx-preview 輸出） ────── */
+/* docx-preview 會在 section 上寫入 inline 樣式，需 !important 蓋掉頁面外框 */
+.custom-preview section.docx {
+  width: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+}
+
+.custom-preview .docx-wrapper {
+  background: none !important;
+  padding: 0 !important;
+}
+
 /* ── Footer ─────────────────────────────── */
 .app-footer {
   max-width: 1240px;

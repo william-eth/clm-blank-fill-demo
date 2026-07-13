@@ -5,6 +5,7 @@ import { downloadFilledDocx } from './docxFill'
 import { downloadPdf } from './pdf'
 import { displayValue } from './format'
 import { fakeCompanies } from './fakeCompanies'
+import FieldsForm from './FieldsForm'
 import PreviewDoc from './PreviewDoc'
 
 interface Props {
@@ -126,38 +127,12 @@ export default function FillView({ template, docxUrl, onBack }: Props) {
           </div>
         )}
 
-        <form className="fields" onSubmit={(e) => e.preventDefault()}>
-          {template.fields.map((f) => {
-            const isMissing = showMissing && f.required && !values[f.key]?.trim()
-            return (
-              <div key={f.key} className={`field ${isMissing ? 'field-missing' : ''}`}>
-                <label className="field-label" htmlFor={`field-${f.key}`}>
-                  {f.label}
-                  {f.required && <span className="required-mark">＊必填</span>}
-                </label>
-                {f.type === 'textarea' ? (
-                  <textarea
-                    id={`field-${f.key}`}
-                    rows={6}
-                    value={values[f.key] ?? ''}
-                    placeholder={f.hint}
-                    onChange={(e) => setField(f.key, e.target.value)}
-                  />
-                ) : (
-                  <input
-                    id={`field-${f.key}`}
-                    type={f.type === 'date' ? 'date' : 'text'}
-                    value={values[f.key] ?? ''}
-                    placeholder={f.hint}
-                    onChange={(e) => setField(f.key, e.target.value)}
-                  />
-                )}
-                <p className="field-hint">{f.hint}</p>
-                {isMissing && <p className="field-error">此欄位為必填</p>}
-              </div>
-            )
-          })}
-        </form>
+        <FieldsForm
+          fields={template.fields}
+          values={values}
+          showMissing={showMissing}
+          onChange={setField}
+        />
 
         <div className="actions">
           <button

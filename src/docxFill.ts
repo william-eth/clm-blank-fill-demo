@@ -12,6 +12,8 @@ export function downloadFilledDocx(buffer: ArrayBuffer, data: Record<string, str
     delimiters: { start: '{{', end: '}}' },
     linebreaks: true,
     paragraphLoop: true,
+    // 自訂範本可能有選填欄位留空：未提供值的標記輸出為空字串
+    nullGetter: () => '',
   })
   doc.render(data)
   const blob = doc.getZip().generate({
